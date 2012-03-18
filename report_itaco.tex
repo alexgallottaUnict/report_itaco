@@ -259,11 +259,10 @@ impossibile se la funziona non ritorna alcun valore.
 \\Per esempio il nodo Somma definisce il metodo in questo modo:
 \begin{verbatim}
            public void scriviCodice(ScrittoreTarget sc) throws
-                EccezioneSemantica {
-                sc.somma(addendo1, addendo2);
+           EccezioneSemantica { sc.somma(addendo1, addendo2);
            }
 \end{verbatim}
-
+ 
 La navigazione dell'albero quindi parte dall'assioma, chiamando il metodo
 scriviCodice e poi si propaga via via alle foglie. In base allo specifico
 ScrittoreTarget passato come parametro, verra scritto il
