@@ -118,6 +118,7 @@ della grammatica utilizzata, i test automatici.
 \section{Linguaggio target Ruby}
 
 \chapter{Caratteristiche del Linguaggio}
+Estensione dei file è .ita
 \section{Sintassi Utilizzata}
 \label{sintassi}
 Un altro accorgimento è la definizione delle funzioni nella forma
@@ -148,11 +149,42 @@ necessario per crearli.
   \item infine preleva e confronta i risultati ottenuti dal file compilato con
   quelli attesi.
 \end{enumerate}
+I file di test .ita sono stati creati anche con lo scopo di fornire una suite di
+esempi per rendere più facile l'apprendimento della sintassi e delle
+funzionalità del linguaggio.
+\\Questi esempi mostrano l'utilizzo di svariati strumenti che vanno dal semplice
+calcolo e uso dello standard input/output all'utilizzo di funzioni, ricorsione e
+semplici algoritmi quali il bubble sort.
 
-\section{Esempi}
 \section{Interfaccia}
-\subsection{CLI}
-\subsection{GUI}
 \label{gui}
+La compilazione dei file .ita può avvenire tramite due diversi strumenti
+indipendenti che contrappongono a facilità e intuitività di utilizzo una
+maggiore portabilità. Essi sono descritti nel seguito di questo capitolo.
+\subsection{Graphic User Interface}
+La \emph{Graphic User Interface}\footnote{in seguito abbreviata in \emph{GUI}} è
+la classica interfaccia grafica gestita con una finestra. Questa \emph{GUI}
+fornisce, oltre a degli immediati comandi di compilazione e traduzione del
+codice, dei basilari elementi di editor di testo quali la gestione dei file e
+la possibilità di modificare il codice sorgente .ita.
+\\La portabilità di questa interfaccia è limitata dal tipo di prompt o shell
+utilizzato. Infatti, per l'esecuzione immediata del programma generato, è
+necessaria una prompt dei comandi nei sistemi \emph{Windows} o un
+\emph{gnome-terminal} nei sistemi \emph{Linux}.
+L'interfaccia grafica contiene anche una breve guida alla sintassi del
+linguaggio accessibile tramite il menù \emph{Aiuto}.
+\subsection{Command Line Interface}
+Oltre all'interfaccia grafica è stato ritenuto importante non tralasciare un
+tool da riga di comando\footnote{in seguito ci si riferirà a tale strumento
+con \emph{CLI}} che, sebbene possa essere meno intuitivo per il target di utenza
+con poca dimestichezza all'utilizzo dei calcolatori, ridimensiona notevolmente
+il problema di portabilità della \emph{GUI}, essendo la \emph{CLI} utilizzabile
+in ogni sistema su cui sia presente l'ambiene Java.
+\\La sintassi per l'utilizzo è
+\begin{verbatim}
+
+\end{verbatim}
+La \emph{CLI} quindi aggiunge maggiore portabilità e la possibilità di essere
+inserita in script.
 
 \end{document}
