@@ -31,8 +31,7 @@ Università degli Studi di Catania
 \includegraphics[scale=0.35]{img/itaco_logo2.png}
 \end{figure}
 \vspace{30pt}
-\\Realizzato da:
-
+Realizzato da:
 \begin{Large}
 %\begin{flushright}
 Alessandro Gallotta, Luca Marturana, Rosario Villari
@@ -41,7 +40,7 @@ Alessandro Gallotta, Luca Marturana, Rosario Villari
 \vspace{30pt}
 
 \begin{large}
-\\Linguaggi e Traduttori
+Linguaggi e Traduttori
 \end{large}
 \\Docente
 \begin{Large}
@@ -145,7 +144,7 @@ enumerativi \emph{Terminals} e \emph{NonTerminals} che implementano
 rispettivamente le interfacce \emph{Terminal} e \emph{NonTerminal} definite
 nella libreria.
 Per ogni terminale o non terminale a cui si vogliono associare degli attributi
-bisogna definire una classe che estende \emph{SymbolValue \verb <T\verb >} e che
+bisogna definire una classe che estende \emph{SymbolValue}\verb <T\verb > e che
 ha lo stesso nome del simbolo. Per esempio:
 \begin{verbatim}
 // Non terminale
@@ -156,11 +155,11 @@ public class NUMERO_INTERO extends SymbolValue<Integer> {};
 Il tipo T deve racchiudere gli attributi che si vogliono associare al simbolo.
 All'interno del costruttore bisogna definire la grammatica che si vuole
 utilizzare chiamando la funzione \verb grammar(). La funzione \verb grammar()
-accetta come parametri il valore di ritorno della funzione prod(), la funzione prod() accetta
-come primo parametro il carattere non terminale che costituisce la parte
-sinistra della produzione, a seguire vanno inserite le parti destre tramite la
-funzione rhs() e poi l'azione che si vuole associare alla specifica produzione
-tramite un oggetto Action. Per esempio:
+accetta come parametri il vaitacosenzasfondoblulore di ritorno della funzione
+\verb prod(), la funzione \verb prod() accetta come primo parametro il carattere
+non terminale che costituisce la parte sinistra della produzione, a seguire vanno inserite le parti destre tramite la
+funzione \verb rhs() e poi l'azione che si vuole associare alla specifica
+produzione tramite un oggetto Action. Per esempio:
 \begin{verbatim}
 prod(A2,
 	rhs(R), new Action() {
@@ -175,8 +174,8 @@ prod(A2,
 	}),
 \end{verbatim}
 
-L'oggetto Action deve avere definito un metodo ``a'' che accetta come valori in
-ingresso gli attributi dei simboli presenti nella parte destra della produzione
+L'oggetto Action deve avere definito un metodo \emph{a()} che accetta come valori
+in ingresso gli attributi dei simboli presenti nella parte destra della produzione
 e deve restituire gli attributi della parte sinistra.
 \\Dopo aver definito la classe ParserSpec, essa viene eseguita tramite queste
 linee di codice che istanziano il parser desiderato a partire dalle specifiche:
