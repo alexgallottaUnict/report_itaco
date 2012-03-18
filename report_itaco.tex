@@ -15,8 +15,8 @@
  
 \begin{document}
 % Logo università Catania
-\begin{figure}[h] \hspace*{130pt}
-\includegraphics[scale=0.25]{img/unict-bianco.png}
+\begin{figure}[h] \hspace*{140pt}
+\includegraphics[scale=0.2]{img/unict-bianco.png}
 \end{figure}
 \begin{center}
 \begin{Large}
@@ -27,8 +27,8 @@ Università degli Studi di Catania
 \end{large}
 \vspace{30pt}
 
-\begin{figure}[h] \hspace*{180pt}
-\includegraphics[scale=0.5]{img/itacosenzasfondoblu.png}
+\begin{figure}[h] \hspace*{130pt}
+\includegraphics[scale=0.35]{img/itaco_logo2.png}
 \end{figure}
 \vspace{30pt}
 \\Realizzato da:
@@ -145,9 +145,8 @@ enumerativi \emph{Terminals} e \emph{NonTerminals} che implementano
 rispettivamente le interfacce \emph{Terminal} e \emph{NonTerminal} definite
 nella libreria.
 Per ogni terminale o non terminale a cui si vogliono associare degli attributi
-% FIXME: aggiustare SymbolValue<T>
-bisogna definire una classe che estende \emph{SymbolValue<T>} e che ha lo stesso
-nome del simbolo. Per esempio:
+bisogna definire una classe che estende \emph{SymbolValue \verb <T\verb >} e che
+ha lo stesso nome del simbolo. Per esempio:
 \begin{verbatim}
 // Non terminale
 public class C extends SymbolValue<istruzioni.C> {};
@@ -156,8 +155,8 @@ public class NUMERO_INTERO extends SymbolValue<Integer> {};
 \end{verbatim}
 Il tipo T deve racchiudere gli attributi che si vogliono associare al simbolo.
 All'interno del costruttore bisogna definire la grammatica che si vuole
-utilizzare chiamando la funzione grammar(). La funzione grammar() accetta come
-parametri il valore di ritorno della funzione prod(), la funzione prod() accetta
+utilizzare chiamando la funzione \verb grammar(). La funzione \verb grammar()
+accetta come parametri il valore di ritorno della funzione prod(), la funzione prod() accetta
 come primo parametro il carattere non terminale che costituisce la parte
 sinistra della produzione, a seguire vanno inserite le parti destre tramite la
 funzione rhs() e poi l'azione che si vuole associare alla specifica produzione
