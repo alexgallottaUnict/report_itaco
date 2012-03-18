@@ -64,11 +64,37 @@ Docente
 \includegraphics[scale=0.5]{img/itaco_logo.png}
 \end{figure}
 \begin{abstract}
+Questo documento riassume brevemente le peculiarità principali del progetto
+ITAco da un punto di vista interessato alla dimostrazione ai fini accademici
+delle competenze acquisite dagli autori dello stesso nell'ambito della creazione
+di linguaggi e compilatori.
+\\Il nome è stato scelto seguendo l'idea iniziale di creare un linguaggio di
+programmazione molto semplice e intuitivo in lingua italiana, affinché possa
+essere facile da utilizzare e didatticamente proficuo per delle categorie di
+utenti che possono incontrare difficoltà nella memorizzazione di parole chiave
+in lingua straniera.
+\\Con lo scopo di perseguire questo obiettivo sono state prese decisioni quali
+l'inversione del normale assegnamento dei valori\footnote{L'assegnazione in
+ITAco avviene con l'espressione nella parte sinistra e la variabile che riceve
+il valore nella parte destra}, che, sebbene risulti a un primo impatto
+sconveniente a un utente abituato ad altri linguaggio di programmazione, è
+tuttavia molto più intuitivo per un utente abituato ad utilizzare la logica
+\emph{della calcolatrice} dove prima si inseriscono i valori e
+successivamente li si assegna a una varabile.
+\\Altre caratteristiche con questo obiettivo possono essere lette nella sezione
+riguardante la sitnassi\footnote{~\ref{sintassi}}. Nell'ambito della facilità di
+utilizzo rientrano le scelte di una intuitiva interfaccia grafica mentre,
+nell'ambito didattico, la possibilità di traduttre il programma scritto in
+diversi linguaggi\footnote{al momento i linguaggi utilizzati sono Ruby, C e
+codice Jasmin}.
+Questi argomenti sono descritti rispettivamente nella sezione ~\ref{gui} e al capitolo ~\ref{back_end}.
+\\Vengono inoltre descritti anche gli strumenti, sia teorici che
+pratici, utilizzati per la realizzazione del progetto quali JFlex, CUP, le produzioni
+della grammatica utilizzata, i test automatici.
 
 \begin{flushright}
-{\bf Keywords:} Jasmin, Compilatori, Cup, JFlex
+{\bf Keywords:} Compilatori, Cup, JFlex
 \end{flushright}
-
 \end{abstract}
 
 \onehalfspacing
@@ -86,14 +112,26 @@ Docente
 \subsection{Produzioni utilizzate}
 
 \chapter{Back End}
+\label{back_end}
 \section{Linguaggio target Jasmin}
 \section{Linguaggio target C}
 \section{Linguaggio target Ruby}
 
+\chapter{Caratteristiche del Linguaggio}
+\section{Sintassi Utilizzata}
+\label{sintassi}
+Un altro accorgimento è la definizione delle funzioni nella forma
+
+\begin{verbatim}
+nome_funzione (arg1 | arg2 | arg3) -> valore di ritorno
+\end{verbatim}
+
 \chapter{Altri Strumenti}
 \section{Test}
+\section{Esempi}
 \section{Interfaccia}
 \subsection{CLI}
 \subsection{GUI}
+\label{gui}
 
 \end{document}
