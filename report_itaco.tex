@@ -27,14 +27,9 @@ Università degli Studi di Catania
 \end{large}
 \vspace{30pt}
 
-\textbf{
-\begin{Huge}
-ITAco
-\end{Huge}
-}
-\begin{large}
-\\Linguaggi e Traduttori
-\end{large}
+\begin{figure}[h] \hspace*{180pt}
+\includegraphics[scale=0.5]{img/itacosenzasfondoblu.png}
+\end{figure}
 \vspace{30pt}
 \\Realizzato da:
 
@@ -43,19 +38,18 @@ ITAco
 Alessandro Gallotta, Luca Marturana, Rosario Villari
 %\end{flushright}
 \end{Large}
-\end{center}
 \vspace{30pt}
-\begin{center}
-Docente
+
+\begin{large}
+\\Linguaggi e Traduttori
+\end{large}
+\\Docente
 \begin{Large}
 \\Prof.ssa Vincenza Carchiolo
 \end{Large}
 
 \vspace{20pt}
 \vfill
-\begin{small}
-18 Marzo 2012
-\end{small}
 \end{center}
 
 \thispagestyle{empty} %togli numerazione pagina
@@ -130,15 +124,14 @@ capire dove si sono verificati.
 \subsection{Token utilizzati}
 Le parole chiave del linguaggio sono le seguenti: altrimenti, intero, se,
 finche, leggi, scrivi, vettore, funzione.
-% FIXME: aggiustare i simboli
-\\Gli operatori sono: ->, +, -, *, /, <, >, =.
+\\Gli operatori sono: -\verb >, +, -, *, /, \verb<, \verb>, =.
 %\\I delimitatori: (, ), \[, \], ``,'', ., |, ;, :.
 \\È possibile inserire stringhe come costanti ( delimitate da ``) che vengono
 utilizzate nella funzione di scrittura a schermo (non sono un tipo riconosciuto e utilizzabile
 nel linguaggio). Le variabili devono iniziare per lettera, possono avere
 qualsiasi lunghezza e anche numeri al loro interno. Possono essere specificate
 costanti di tipo numerico. Infine possono essere specificati commenti monoriga
-in qualsiasi punto del codice, essi vengono identificati dal carattere ``#''.
+in qualsiasi punto del codice, essi vengono identificati dal carattere '\#'.
 Gli spazi bianchi vengono ignorati, a meno che non si trovano in una stringa.
 
 \section{Parser}
