@@ -140,9 +140,111 @@ qualsiasi lunghezza e anche numeri al loro interno. Possono essere specificate
 costanti di tipo numerico. Infine possono essere specificati commenti monoriga
 in qualsiasi punto del codice, essi vengono identificati dal carattere ``#''.
 Gli spazi bianchi vengono ignorati, a meno che non si trovano in una stringa.
-\section{Parser}
-\subsection{Produzioni utilizzate}
 
+\section{Parser}
+È stato scelto di utilizzare la libreria Java CUP 2 perché risulta essere la più
+moderna e potente. Come configurazione CUP2 prevede di definire una classe Java
+che estende \emph{CUP2Specification}. Nel progetto ITAco è stata chiamata
+\emph{ParserSpec}. All'interno di questa classe bisogna definire due tipi
+enumerativi \emph{Terminals} e \emph{NonTerminals} che implementano
+rispettivamente le interfacce \emph{Terminal} e \emph{NonTerminal} definite
+nella libreria.
+Per ogni terminale o non terminale a cui si vogliono associare degli attributi
+% FIXME: aggiustare SymbolValue<T>
+bisogna definire una classe che estende \emph{SymbolValue<T>} e che ha lo stesso
+nome del simbolo. Per esempio:
+\begin{verbatim}
+// Non terminale
+public class C extends SymbolValue<istruzioni.C> {};
+// Terminale
+public class NUMERO_INTERO extends SymbolValue<Integer> {};
+\end{verbatim}
+Il tipo T deve racchiudere gli attributi che si vogliono associare al simbolo.
+All'interno del costruttore bisogna definire la grammatica che si vuole
+utilizzare chiamando la funzione grammar(). La funzione grammar() accetta come
+parametri il valore di ritorno della funzione prod(), la funzione prod() accetta
+come primo parametro il carattere non terminale che costituisce la parte
+sinistra della produzione, a seguire vanno inserite le parti destre tramite la
+funzione rhs() e poi l'azione che si vuole associare alla specifica produzione
+tramite un oggetto Action. Per esempio:
+\begin{verbatim}
+prod(A2,
+	rhs(R), new Action() {
+		public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r) {
+			return r;
+		}
+	}, rhs(R, PIPE, A2), new Action() {
+		public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r,
+				istruzioni.funzioni.A2 a2) {
+			return new ArgomentiDefinizioneFunzione(r, a2);
+		}
+	}),
+\end{verbatim}
+
+L'oggetto Action deve avere definito un metodo ``a'' che accetta come valori in
+ingresso gli attributi dei simboli presenti nella parte destra della produzione
+e deve restituire gli attributi della parte sinistra.
+\\Dopo aver definito la classe ParserSpec, essa viene eseguita tramite queste
+linee di codice che istanziano il parser desiderato a partire dalle specifiche:
+\begin{verbatim}
+/**
+ * Creo un parser LALR1
+ */
+LALR1Generator generator = new LALR1Generator(new ParserSpec());
+/**
+ * Prendi la parsing table generata
+ */
+LRParsingTable table = generator.getParsingTable();
+/**
+ * Crea un parser LR dalla tabella generata
+ */
+LRParser parser = new LRParser(table);
+/**
+ * Usa il parser per generare l'AST dallo stream di token passati dallo
+ * scanner
+ */
+S result = (S) parser.parse(new Scanner(new FileReader(sorgenteFile)));
+\end{verbatim}
+
+Sono disponibili i parser LR0, LALR1, e LR1. Nel progetto ITAco è stato scelto
+euristicamente di utilizzare il parser LALR1, poiché è il più veloce che
+rispetta le specifiche della grammatica. Il risultato del parsing è un oggetto
+con gli attributi dell'assioma che rappresenta la radice dell'albero sintattico
+decorato.
+\subsection{Produzioni utilizzate}
+Le produzioni utilizzate sono le seguenti:
+\begin{verbatim}
+# Assioma
+S -> Z S | N.
+Z -> funzione id(A) ass intero id:N.| funzione id(A):N.
+A -> epsilon | A2
+A2-> R | R pipe A2 
+R -> intero id | vettore id[id]
+N -> I | I,N
+N -> C | C N
+I -> E ass intero id | E ass id | intero id
+I -> vettore id[costante] | E ass id[E]
+I -> stampa E | leggi id | leggi id[E] | stampa STRINGA | id(W)
+C -> se B:N. | finché B:N. | se B:N; altrimenti: N.
+
+# Espressioni logiche
+B -> E = E | E < E | E > E
+
+# Espressioni aritmetiche
+E -> E + T | E - T | T
+T -> T • F | T / F | F
+F -> id | costante | (E) | id[E] | id(W)
+W -> epsilon | W2
+W2 -> U pipe W2 | U
+U -> E | id[]
+\end{verbatim}
+
+In particolare il codice è strutturato in modo tale che prima bisogna definire
+tutte le funzioni e poi si passa alle istruzioni ``main'' del programma, ovvero
+quelle che vengono eseguite quando lo si avvia. Le espressioni aritmetiche
+rispettano le precedenze tra gli operatori e le espressioni booleane sono
+limitate all'uso di operatori maggiore, minore e uguale. Questi ultimi non
+possono essere annidati.
 \chapter{Back End}
 \label{back_end}
 \section{Linguaggio target Jasmin}
