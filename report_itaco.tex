@@ -118,15 +118,157 @@ della grammatica utilizzata, i test automatici.
 \section{Linguaggio target Ruby}
 
 \chapter{Caratteristiche del Linguaggio}
-Estensione dei file è .ita
+Il lingugaggio, come dalle specifiche richieste, ha le seguenti caratteristiche:
+\begin{itemize}
+  \item Tipi di dato interi;
+  \item Tipi di dato vettore di interi;
+  \item Istruzione di assegnazione;
+  \item Supporta la definizione e l'invocazione di funzioni i cui argomenti
+  possono essere sia interi che vettori di interi e il valore di ritorno è
+  rappresentato da un intero;
+  \item Possibililtà di controllare il flusso di esecuzione del programma
+  attraverso cicli, istruzioni di controllo logiche e il concetto di blocco di
+  codice per modellare la sequenza;
+  \item Funzionalità di input e output da tastiera.
+\end{itemize}
+
+Oltre alle specifiche richieste, sono state aggiunte le seguenti funzionalità
+per completezza e per garantire il corretto funzionamento delle specifiche di
+cui sopra:
+\begin{itemize}
+  \item Introduzione degli operatori logici di uguaglianza, maggioranza e
+  minoranza;
+  \item Gestione parziale dei tipi di dato vero/falso, non gestibili
+  direttamente dal programmatore ma attraverso gli operatori logici di
+  uguaglianza, maggioranza e minoranza;
+  \item Gestione completa degli operatori elementari di somma, sottrazione,
+  prodotto e divisione per i tipi di dato interi e gli elementi dei vettori di
+  interi.
+\end{itemize}
+I file sorgente del linguaggi ITAco devono essere salvati in file con estensione
+.ita e possono essere creati e modificati con un qualunque editor di testo o
+tramite la \emph{Graphic User Interface} descritta alla sezione ~\ref{gui}.
 \section{Sintassi Utilizzata}
 \label{sintassi}
-Un altro accorgimento è la definizione delle funzioni nella forma
+\subsection{Sintassi nelle funzioni}
+La sintassi utilizzata cerca di venire incontro alle utenze non esperte nella
+programmazione. Come detto in precedenza, l'assegnazione con la variabile che
+riceverà il valore sulla destra è uno di questi accorgimenti.
+\\Un altro accorgimento è la definizione delle funzioni nella forma:
+
 
 \begin{verbatim}
-nome_funzione (arg1 | arg2 | arg3) -> valore di ritorno
+          funzione nome_funzione (arg1 | arg2 | arg3) -> valore_di_ritorno:
+                   codice eseguito dalla funzione
+          .
 \end{verbatim}
 
+o, nel caso in cui non ci sia valore di ritorno:
+
+\begin{verbatim}
+          funzione nome_funzione (arg1 | arg2 | arg3):
+                   codice eseguito dalla funzione
+          .
+\end{verbatim}
+
+
+che richiama la definizione matematica
+\[ f(x,y): Dominio \quad -> Codominio\]
+
+La scelta di questa forma per la definizione di funzione risiede anche nel fatto
+che la variabile di ritorno, nel caso la funzione ne ritorni uno, è comodamente
+accessibile avendola definita direttamente nella firma della funzione.
+\\Un altro accorgimento è presente nel caso la funzione abbia come argomento un
+vettore. In questo caso, l'argomento sarà definito nella firma della funzione
+nella forma:
+
+\begin{verbatim}
+          funzione nome_funzione(vettore array[dim]:
+                   codice eseguito dalla funzione
+          .
+\end{verbatim}
+
+in questo modo la dimensione del vettore, anziché essere passata come
+altra variabile a parte, è memorizzata nella variabile \emph{dim} racchiuda tra
+le parentesi quadre e facilmente riconosciuta come dimensione dell'array.
+\\Per assegnare il valore di ritorno di una funzione, la sintassi è:
+\begin{verbatim}
+          nome_funzione (arg1 | arg2 | arg3) -> variabile_ricevente
+\end{verbatim}
+nel caso sia necessario far ritornare un intero vettore, è possibile passare
+quest'ultimo alla funzione come argomento.
+\subsection{Sintassi nelle istruzioni}
+Nel resto del codice sorgente, comprese le istruzioni eseguite dalle funzioni,
+le seguenti convenzioni sono state adottate:
+\begin{itemize}
+  \item la virgola rappresenta una terminazione debole, ad esempio la fine di
+  una istruzione;
+  \item il punto rappresenta una terminazione forte, quale la fine del programma
+  o la terminazione di un blocco di codice;
+  \item il punto e virgola rappresenta la terminazione del primo blocco nel caso
+  della struttura 'se\ldots altrimenti\ldots' :
+\end{itemize}
+ \begin{verbatim}
+          se condizione :
+              codice se
+          ;
+          altrimenti:
+              codice altrimenti
+          .
+ \end{verbatim}
+ \begin{itemize}
+  \item la concatenzione degli argomenti nell'invocazione o nella definizione
+  di una funzione è effettuata tramite il carattere \emph{pipe} '\verb | ' ;
+  \item l'istruzione di assegnamento è generata dai caratteri
+  '-\verb > ' che simboleggiano una freccia e indicano
+  l'assegnazione del valore risultante dall'espressione a sinistra della freccia nella variabile indicata a destra;
+  \item le istruzioni di controllo di una condizione e ciclo sono state indicate
+  rispettivamente con le parole chiave 'se' e 'finche' e sono necessariamente
+  seguite da un blocco di istruzioni;
+  \item gli operatori matematici di somma, prodotto, sottrazione e divisione e
+  quelli logici di maggioranza e minoranza sono espressi tramite i tradizionali
+  simboli. L'unica eccezione è rappresentata dall'uguaglianza:
+\end{itemize}
+\begin{center}
+  \begin{tabular}{ | l | c | }
+    \hline
+    Somma & +  \\ \hline
+    Prodotto & *  \\ \hline
+    Sottrazione & -  \\\hline
+    Divisione & /  \\ \hline
+    Maggioranza & \verb > \\ \hline
+    Minoranza & \verb < \\\hline
+    Uguaglianza & =  \\\hline
+  \end{tabular}
+\end{center}
+\begin{itemize}
+  \item la definizione di una variabile è del tipo:
+\end{itemize}
+ \begin{verbatim}
+          intero nome_variabile,
+          vettore nome_vettore[dimensione_vettore]
+ \end{verbatim}
+ o, nel caso si assegni al volo un valore a una variabile\footnote{nel caso di
+ nessun assegnamento, il valore di default è 0}:
+ 
+ \begin{verbatim}
+          valore_assegnato -> intero nome_variabile
+\end{verbatim}
+
+\begin{itemize}
+ \item per la lettura da tastiera di un intero:
+\begin{verbatim}
+          leggi nome_variabile_ricevente
+\end{verbatim}
+\item infine, per la scrittura di un intero:
+\begin{verbatim}
+          scrivi variabile_da_scrivere
+\end{verbatim}
+mentre, per la scrittura di una stringa:
+\begin{verbatim}
+          leggi "stringa da scrivere"
+\end{verbatim}
+\end{itemize} 
 \chapter{Altri Strumenti}
 In questo capitolo sono elencati degli strumenti che gli autori del progetto
 hanno ritenuto opportuno aggiungere per aumentare vuoi l'usabilità e in generale
@@ -172,7 +314,14 @@ utilizzato. Infatti, per l'esecuzione immediata del programma generato, è
 necessaria una prompt dei comandi nei sistemi \emph{Windows} o un
 \emph{gnome-terminal} nei sistemi \emph{Linux}.
 L'interfaccia grafica contiene anche una breve guida alla sintassi del
-linguaggio accessibile tramite il menù \emph{Aiuto}.
+linguaggio accessibile tramite il menù \emph{Aiuto} e un'area di log dove tutto
+il log della compilazione è indirizzato.
+
+\begin{figure}[h] \hspace*{30pt} 
+\includegraphics[scale=0.5]{img/gui_itaco.png}
+\caption{Finestra principale della GUI}
+\end{figure}
+
 \subsection{Command Line Interface}
 Oltre all'interfaccia grafica è stato ritenuto importante non tralasciare un
 tool da riga di comando\footnote{in seguito ci si riferirà a tale strumento
