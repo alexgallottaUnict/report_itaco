@@ -112,7 +112,7 @@ nativamente al momento. Il collegamento viene effettuato restituendo come token
 oggetti della classe \emph{ScannerToken}, per esempio quando trova la parola
 chiave ``altrimenti'', restituisce:
 \begin{verbatim}
-return new ScannerToken<Object>(ALTRIMENTI, yyline+1, yycolumn);
+          return new ScannerToken<Object>(ALTRIMENTI, yyline+1, yycolumn);
 \end{verbatim}
 
 Come primo parametro del costruttore viene passata una costante di tipo
@@ -148,9 +148,9 @@ bisogna definire una classe che estende \emph{SymbolValue}\verb <T\verb > e che
 ha lo stesso nome del simbolo. Per esempio:
 \begin{verbatim}
 // Non terminale
-public class C extends SymbolValue<istruzioni.C> {};
+          public class C extends SymbolValue<istruzioni.C> {};
 // Terminale
-public class NUMERO_INTERO extends SymbolValue<Integer> {};
+          public class NUMERO_INTERO extends SymbolValue<Integer> {};
 \end{verbatim}
 Il tipo T deve racchiudere gli attributi che si vogliono associare al simbolo.
 All'interno del costruttore bisogna definire la grammatica che si vuole
@@ -162,16 +162,18 @@ funzione \verb rhs() e poi l'azione che si vuole associare alla specifica
 produzione tramite un oggetto Action. Per esempio:
 \begin{verbatim}
 prod(A2,
-	rhs(R), new Action() {
-		public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r) {
-			return r;
-		}
-	}, rhs(R, PIPE, A2), new Action() {
-		public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r,
-				istruzioni.funzioni.A2 a2) {
-			return new ArgomentiDefinizioneFunzione(r, a2);
-		}
-	}),
+    rhs(R), new Action() {
+            public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r) {
+                return r;
+            }
+    }, 
+    rhs(R, PIPE, A2), new Action() {
+            public istruzioni.funzioni.A2 a(istruzioni.funzioni.R r,
+            istruzioni.funzioni.A2 a2) {
+                return new ArgomentiDefinizioneFunzione(r, a2);
+            }
+    }
+),
 \end{verbatim}
 
 L'oggetto Action deve avere definito un metodo \emph{a()} che accetta come valori
@@ -245,7 +247,8 @@ diversi linguaggi target, infatti sono stati implementati Jasmin-Java, C e Ruby.
 Ogni oggetto dell'albero sintattico ha un metodo definito in questo modo:
 
 \begin{verbatim}
-public void scriviCodice(ScrittoreTarget sc) throws EccezioneSemantica;
+          public void scriviCodice(ScrittoreTarget sc) throws
+          EccezioneSemantica;
 \end{verbatim}
 
 All'interno di questo metodo ogni nodo inserisce le istruzioni che rappresentano
@@ -255,9 +258,10 @@ risultato di una funzione lo si vuole assegnare ad una variabile, questo è
 impossibile se la funziona non ritorna alcun valore.
 \\Per esempio il nodo Somma definisce il metodo in questo modo:
 \begin{verbatim}
-public void scriviCodice(ScrittoreTarget sc) throws EccezioneSemantica {
-	sc.somma(addendo1, addendo2);
-}
+           public void scriviCodice(ScrittoreTarget sc) throws
+                EccezioneSemantica {
+                sc.somma(addendo1, addendo2);
+           }
 \end{verbatim}
 
 La navigazione dell'albero quindi parte dall'assioma, chiamando il metodo
