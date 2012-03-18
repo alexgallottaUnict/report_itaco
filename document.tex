@@ -1,19 +1,89 @@
-%%This is a very basic article template.
-%%There is just one section and two subsections.
-\documentclass{article}
+% Distributed System project report
+\documentclass[11pt, a4paper, twoside, notitlepage]{report}
+\usepackage[italian]{babel} %capitolo, sommario e altro in italiano
+\usepackage[Lenny]{fncychap} 
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{wrapfig} 
+\usepackage[footnotesize,bf]{caption} %dimensione caption
+\usepackage{appendix}
+\usepackage[utf8x]{inputenc} %caratteri accentati per linux
 
+\linespread{1.5}    %spaziatura linee
+ 
 \begin{document}
+% Logo università Catania
+\begin{figure}[h] \hspace*{130pt}
+\includegraphics[scale=0.25]{img/unict-bianco.png}
+\end{figure}
+\begin{center}
+\begin{Large}
+Università degli Studi di Catania
+\end{Large}
+\begin{large}
+\\Corso di Laurea Magistrale in Ingegneria Informatica
+\end{large}
+\vspace{30pt}
 
+\textbf{
+\begin{Huge}
+ITAco
+\end{Huge}
+}
+\begin{large}
+\\Linguaggi e Traduttori
+\end{large}
+\vspace{30pt}
+\\Realizzato da
 
-\section{Title}
+\begin{Large}
+%\begin{flushright}
+Alessandro Gallotta
+\\Luca Marturana
+\\Rosario Villari
+%\end{flushright}
+\end{Large}
+\end{center}
+\vspace{30pt}
+\begin{center}
+Docente
+\begin{Large}
+\\Prof.ssa V. Carchiolo
+\end{Large}
 
-\subsection{Subtitle}
+\vspace{20pt}
+\vfill
+\begin{small}
+18 Marzo 2012
+\end{small}
+\end{center}
 
-Plain text.
+\thispagestyle{empty} %togli numerazione pagina
+\clearpage
 
-\subsection{Another subtitle}
+\begin{figure}
+\includegraphics[scale=0.7]{img/logo.png}
+\end{figure}
+\begin{abstract}
 
-More plain text.
+\begin{flushright}
+{\bf Keywords:} Jasmin, Compilatori, Cup, JFlex
+\end{flushright}
 
+\end{abstract}
+
+\onehalfspacing
+
+%Inizia il conteggio pagine e stampa table of contents (indice)
+\setcounter{page}{1}
+\setcounter{tocdepth}{3}%profondità table of contents
+\tableofcontents
+
+\chapter{Introduzione}
+
+\section{Overview del progetto} 
+\section{Componenti Coinvolti}
 
 \end{document}
