@@ -219,7 +219,7 @@ le seguenti convenzioni sono state adottate:
  \begin{itemize}
   \item la concatenzione degli argomenti nell'invocazione o nella definizione
   di una funzione è effettuata tramite il carattere \emph{pipe} '\verb | ' ;
-  \item l'istruzione di assegnamento è generata dai caratteri
+  \item l'istruzione di assegnamento è generata dai caratteri 
   '-\verb > ' che simboleggiano una freccia e indicano
   l'assegnazione del valore risultante dall'espressione a sinistra della freccia nella variabile indicata a destra;
   \item le istruzioni di controllo di una condizione e ciclo sono state indicate
@@ -291,8 +291,8 @@ necessario per crearli.
   \item infine preleva e confronta i risultati ottenuti dal file compilato con
   quelli attesi.
 \end{enumerate}
-I file di test .ita sono stati creati anche con lo scopo di fornire una suite di
-esempi per rendere più facile l'apprendimento della sintassi e delle
+Oltre ai file di test .ita sono stati creati anche degli altri file sorgente
+.ita con lo scopo di fornire una suite di esempi per rendere più facile l'apprendimento della sintassi e delle
 funzionalità del linguaggio.
 \\Questi esempi mostrano l'utilizzo di svariati strumenti che vanno dal semplice
 calcolo e uso dello standard input/output all'utilizzo di funzioni, ricorsione e
@@ -330,11 +330,14 @@ con \emph{CLI}} che, sebbene possa essere meno intuitivo per il target di utenza
 con poca dimestichezza all'utilizzo dei calcolatori, ridimensiona notevolmente
 il problema di portabilità della \emph{GUI}, essendo la \emph{CLI} utilizzabile
 in ogni sistema su cui sia presente l'ambiene Java.
-\\La sintassi per l'utilizzo è
+\\Per avviare l'interfaccia a riga di comando è sufficiente avviare il file .jar
+con almeno un parametro:
 \begin{verbatim}
-
+          java -jar itaco.jar nome_file_da_compilare.ita [linguaggio_target]
 \end{verbatim}
-La \emph{CLI} quindi aggiunge maggiore portabilità e la possibilità di essere
-inserita in script.
+il secondo parametro è opzionale. Nel caso della sua mancanza verrà generato
+solo il codice .class.
+\\La \emph{CLI} quindi aggiunge maggiore portabilità e la
+possibilità di essere inserita in script.
 
 \end{document}
