@@ -247,12 +247,32 @@ limitate all'uso di operatori maggiore, minore e uguale. Questi ultimi non
 possono essere annidati.
 \chapter{Back End}
 \label{back_end}
-\section{Linguaggio target Jasmin}
-\section{Linguaggio target C}
-\section{Linguaggio target Ruby}
+È stato deciso di utilizzare un sistema backend generico in modo da poter avere
+diversi linguaggi target, infatti sono stati implementati Jasmin-Java, C e Ruby.
+Ogni oggetto dell'albero sintattico ha un metodo definito in questo modo:
+
+\begin{verbatim}
+public void scriviCodice(ScrittoreTarget sc) throws EccezioneSemantica;
+\end{verbatim}
+
+All'interno di questo metodo ogni nodo inserisce le istruzioni che rappresentano
+la sua semantica, tramite metodi chiamati sull'oggetto ScrittoreTarget. Per
+esempio il nodo Somma definisce il metodo in questo modo:
+\begin{verbatim}
+public void scriviCodice(ScrittoreTarget sc) throws EccezioneSemantica {
+	sc.somma(addendo1, addendo2);
+}
+\end{verbatim}
+
+La navigazione dell'albero quindi parte dall'assioma, chiamando il metodo
+scriviCodice e poi si propaga via via alle foglie. In base allo specifico
+ScrittoreTarget passato come parametro, verra scritto il
+codice target corrispondente. Per esempio la classe JasminTarget è in grado di
+generare codice assembly Jasmin e anche poi di compilarlo in codice .class
+eseguibile dalla JVM.
 
 \chapter{Caratteristiche del Linguaggio}
-Il lingugaggio, come dalle specifiche richieste, ha le seguenti caratteristiche:
+Il linguaggio, come dalle specifiche richieste, ha le seguenti caratteristiche:
 \begin{itemize}
   \item Tipi di dato interi;
   \item Tipi di dato vettore di interi;
