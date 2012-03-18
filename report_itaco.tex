@@ -127,7 +127,28 @@ nome_funzione (arg1 | arg2 | arg3) -> valore di ritorno
 \end{verbatim}
 
 \chapter{Altri Strumenti}
-\section{Test}
+In questo capitolo sono elencati degli strumenti che gli autori del progetto
+hanno ritenuto opportuno aggiungere per aumentare vuoi l'usabilità e in generale
+la qualità del programma finito vuoi la facilità di sviluppo e il bug-tracking.
+\section{Test Automatici}
+Al fine di velocizzare lo sviluppo e mantenere un alto livello di controllo sui
+bug, sono stati introdotti dei test automatici che coprono la gamma di
+funzionalità offerte dal linguaggio ITAco. Poiché le specifiche del progetto
+richiedevano principalemente la compilazione usando come linguaggio target
+\emph{Jasmin}, i test sono stati creati ad hoc per tale linguaggio. La natura di
+alto livello degli altri linguaggi target non hanno fatto ritenere al team di
+autori che la necessità di creare appositi test superasse il valore del tempo
+necessario per crearli.
+\\I test funzionano nel seguente modo:
+\begin{enumerate}
+  \item La classe \emph{JasminTest} compila e carica dei file .ita creati
+  appositamente per i test;
+  \item la suddetta classe invia determinati valori di input dei quali conosce
+  già i risultati;
+  \item infine preleva e confronta i risultati ottenuti dal file compilato con
+  quelli attesi.
+\end{enumerate}
+
 \section{Esempi}
 \section{Interfaccia}
 \subsection{CLI}
