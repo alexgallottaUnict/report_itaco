@@ -82,7 +82,7 @@ tuttavia molto più intuitivo per un utente abituato ad utilizzare la logica
 \emph{della calcolatrice} dove prima si inseriscono i valori e
 successivamente li si assegna a una varabile.
 \\Altre caratteristiche con questo obiettivo possono essere lette nella sezione
-riguardante la sitnassi\footnote{~\ref{sintassi}}. Nell'ambito della facilità di
+riguardante la sintassi\footnote{~\ref{sintassi}}. Nell'ambito della facilità di
 utilizzo rientrano le scelte di una intuitiva interfaccia grafica mentre,
 nell'ambito didattico, la possibilità di traduttre il programma scritto in
 diversi linguaggi\footnote{al momento i linguaggi utilizzati sono Ruby, C e
@@ -107,7 +107,39 @@ della grammatica utilizzata, i test automatici.
 \chapter{Front End}
 
 \section{Scanner}
-\subsection{Token utilizzati} 
+Come Scanner si è deciso di utilizzare JFLEX, perché è il più moderno e veloce
+disponibile per Java. La configurazione è stata abbastanza semplice visto che è
+simile a quella di altri linguaggi.
+Questo software prevede la scrittura di un file .flex, che viene poi
+interpretato dall'eseguibile di JFLEX per essere convertito in una classe Java.
+In questo progetto la suddetta classe è stata chiamata semplicemente
+``Scanner''.
+\\L'unico problema è stato il collegamento con il Parser perché non é supportato
+nativamente al momento. Il collegamento viene effettuato restituendo come token
+oggetti della classe \emph{ScannerToken}, per esempio quando trova la parola
+chiave ``altrimenti'', restituisce:
+\begin{verbatim}
+return new ScannerToken<Object>(ALTRIMENTI, yyline+1, yycolumn);
+\end{verbatim}
+
+Come primo parametro del costruttore viene passata una costante di tipo
+enumerativo che identifica il token trovato, a seguire vengono passate la riga e
+la colonna in modo tale che, nel caso in cui ci sono degli errori, è più facile
+capire dove si sono verificati.
+
+\subsection{Token utilizzati}
+Le parole chiave del linguaggio sono le seguenti: altrimenti, intero, se,
+finche, leggi, scrivi, vettore, funzione.
+% FIXME: aggiustare i simboli
+\\Gli operatori sono: ->, +, -, *, /, <, >, =.
+%\\I delimitatori: (, ), \[, \], ``,'', ., |, ;, :.
+\\È possibile inserire stringhe come costanti ( delimitate da ``) che vengono
+utilizzate nella funzione di scrittura a schermo (non sono un tipo riconosciuto e utilizzabile
+nel linguaggio). Le variabili devono iniziare per lettera, possono avere
+qualsiasi lunghezza e anche numeri al loro interno. Possono essere specificate
+costanti di tipo numerico. Infine possono essere specificati commenti monoriga
+in qualsiasi punto del codice, essi vengono identificati dal carattere ``#''.
+Gli spazi bianchi vengono ignorati, a meno che non si trovano in una stringa.
 \section{Parser}
 \subsection{Produzioni utilizzate}
 
