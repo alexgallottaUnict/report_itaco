@@ -98,6 +98,8 @@ della grammatica utilizzata, i test automatici.
 \thispagestyle{empty} %togli numerazione pagina
 
 \chapter{Front End}
+
+
 \setcounter{page}{1}
 
 \section{Scanner}
@@ -446,9 +448,11 @@ necessario per crearli.
   \item infine preleva e confronta i risultati ottenuti dal file compilato con
   quelli attesi.
 \end{enumerate}
-Oltre ai file di test .ita sono stati creati anche degli altri file sorgente
-.ita con lo scopo di fornire una suite di esempi per rendere più facile l'apprendimento della sintassi e delle
-funzionalità del linguaggio.
+% Parte riguardante gli errori
+Un'altra classe, chiamata \emph{ErrorTest} si occupa di testare le condizioni in
+cui si compila codice con errori semantici, in modo da verificare che il
+compilatore li riporta correttamente.\\Oltre ai file di test .ita sono stati
+creati anche degli altri file sorgente .ita con lo scopo di fornire una suite di esempi per rendere più facile l'apprendimento della sintassi e delle funzionalità del linguaggio.
 \\Questi esempi mostrano l'utilizzo di svariati strumenti che vanno dal semplice
 calcolo e uso dello standard input/output all'utilizzo di funzioni, ricorsione e
 semplici algoritmi quali il bubble sort.
@@ -495,4 +499,20 @@ solo il codice .class.
 \\La \emph{CLI} quindi aggiunge maggiore portabilità e la
 possibilità di essere inserita in script.
 
+\chapter{Conclusioni e sviluppi futuri}
+Il progetto è risutalto essere molto interessante da due punti di vista. Il
+primo riguarda aver imparato a progettare un compilatore in tutte le varie fasi,
+che vanno dal riconoscimento dei token del linguaggio alla scrittura del codice
+target. Dall'altro punto di vista invece si ritiene che questo progetto può
+essere un buon punto di partenza per creare un linguaggio in
+italiano completo e utile ai fini di introdurre al mondo della programmazione
+chi può avere difficoltà con la lingua inglese.
+\\A tal proposito sono stati delineati alcuni sviluppi che possono arricchire il
+linguaggio:
+\begin{enumerate}
+  \item Introdurre il tipo di dato a virgola mobile
+  \item Introdurre più operazioni di algebra booleana
+  \item Possibilità di creare e importare librerie
+  \item Ottimizzazione del codice target generato
+\end{enumerate}
 \end{document}
